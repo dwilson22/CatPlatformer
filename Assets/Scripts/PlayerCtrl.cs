@@ -16,6 +16,8 @@ public class PlayerCtrl : MonoBehaviour {
 	public float boxHeight;
 	public LayerMask whatIsGround;
 	public float delayForDoubleJump;
+	public Transform leftBulletSpawnPos, rightBulletSpawnPos;
+	public GameObject leftBullet, rightBullet;
 
 
 	Rigidbody2D rb;
@@ -49,6 +51,10 @@ public class PlayerCtrl : MonoBehaviour {
 		if (Input.GetButtonDown ("Jump")) {
 			anim.SetInteger ("State", 2);
 			Jump ();
+		}
+
+		if (Input.GetButtonDown ("Fire1")) {
+			fireBullet ();
 		}
 
 		showFalling ();
@@ -103,6 +109,15 @@ public class PlayerCtrl : MonoBehaviour {
 			rb.AddForce (new Vector2 (0,jumpSpeed));
 			anim.SetInteger ("State", 2);
 			canDoubleJump = false;
+		}
+	}
+
+	void fireBullet(){
+		if (sr.flipX) {
+			Instantiate (leftBullet, leftBulletSpawnPos.position, Quaternion.identity);
+		} else {
+			Instantiate (rightBullet, rightBulletSpawnPos.position, Quaternion.identity);
+
 		}
 	}
 
