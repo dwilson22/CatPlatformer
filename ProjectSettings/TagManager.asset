@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Ground
+  - Feet
+  - Coin
   layers:
   - Default
   - TransparentFX
@@ -50,4 +52,7 @@ TagManager:
     locked: 0
   - name: Collectables
     uniqueID: 762389227
+    locked: 0
+  - name: UI
+    uniqueID: 2320117017
     locked: 0

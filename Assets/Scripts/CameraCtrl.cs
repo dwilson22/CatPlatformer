@@ -10,7 +10,8 @@ public class CameraCtrl : MonoBehaviour {
 	public Transform player;
 	private float yAxis;
 	private float xAxis;
-	public float offSet;
+	public float offSetY;
+	public float offSetX;
 	// Use this for initialization
 	void Start () {
 		
@@ -29,7 +30,7 @@ public class CameraCtrl : MonoBehaviour {
 			xAxis = player.position.x;
 		}
 		//my solution, check to see boundries.
-		transform.position = new Vector3(xAxis,yAxis,transform.position.z);
+		transform.position = new Vector3(xAxis+offSetX,yAxis+offSetY,transform.position.z);
 		//only follows x axis for course
 		//transform.position = new Vector3(player.position.x,transform.position.y,transform.position.z);
 		//course's solution, ffset y axis.

@@ -25,6 +25,7 @@ public class PlayerCtrl : MonoBehaviour {
 	Animator anim;
 	bool isJumping;
 	bool canDoubleJump;
+	bool rightPressed, leftPressed;
 	// Use this for initialization
 	void Start () {
 		rb = GetComponent<Rigidbody2D>();
@@ -59,6 +60,13 @@ public class PlayerCtrl : MonoBehaviour {
 
 		showFalling ();
 
+		if (leftPressed) {
+			MoveHorizontal (-speedBoost);
+		}
+
+		if (rightPressed) {
+			MoveHorizontal (speedBoost);
+		}
 	}
 
 	void OnDrawGizmos(){
@@ -121,6 +129,26 @@ public class PlayerCtrl : MonoBehaviour {
 		}
 	}
 
+	public void MobileMoveLeft(){
+		leftPressed = true;
+	}
+	public void MobileMoveRight(){
+		rightPressed = true;
+	}
+	public void MobileMoveStop(){
+		leftPressed = false;
+		rightPressed = false;
+		StopMoving ();
+	}
+
+	public void MobileFireBullets(){
+		fireBullet ();
+	}
+
+	public void MobileJump(){
+		Jump ();
+	}
+
 	void CanDoubleJump(){
 		canDoubleJump = true;
 	}
@@ -128,6 +156,18 @@ public class PlayerCtrl : MonoBehaviour {
 	void OnCollisionEnter2D(Collision2D other){
 		if (other.gameObject.CompareTag ("Ground")) {
 			isJumping = false;
+		}
+	}
+
+	void OnTriggerEnter2D(Collider2D other){
+		Debug.Log (other.gameObject.tag);
+		switch (other.gameObject.tag) {
+		case "Coin":
+			
+			SFXCtrl.instance.ShowCoinSparkle (other.gameObject.transform.position);
+			break;
+		default:
+			break;
 		}
 	}
 }
