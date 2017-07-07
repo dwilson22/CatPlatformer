@@ -17,7 +17,7 @@ public class SamplePlatform : MonoBehaviour
 
 	void OnTriggerEnter2D(Collider2D other)
 	{
-		if(other.gameObject.CompareTag("PlayerFeet"))
+		if(other.gameObject.CompareTag("Feet"))
 		{
 			Invoke("StartDropping", droppingDelay);
 		}

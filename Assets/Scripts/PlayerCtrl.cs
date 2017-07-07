@@ -9,7 +9,7 @@ public class PlayerCtrl : MonoBehaviour {
 	[Tooltip("This is an postive int that is used to speed up player movement by the amount multiplied.")]
 	public int speedBoost;
 	public float jumpSpeed;
-	public bool isGrounded;
+	public bool isGrounded, SFXOn, canFire;
 	public Transform feet;
 	public float feetRadius;
 	public float boxWidth;
@@ -121,11 +121,13 @@ public class PlayerCtrl : MonoBehaviour {
 	}
 
 	void fireBullet(){
-		if (sr.flipX) {
-			Instantiate (leftBullet, leftBulletSpawnPos.position, Quaternion.identity);
-		} else {
-			Instantiate (rightBullet, rightBulletSpawnPos.position, Quaternion.identity);
+		if (canFire) {
+			if (sr.flipX) {
+				Instantiate (leftBullet, leftBulletSpawnPos.position, Quaternion.identity);
+			} else {
+				Instantiate (rightBullet, rightBulletSpawnPos.position, Quaternion.identity);
 
+			}
 		}
 	}
 
@@ -163,8 +165,16 @@ public class PlayerCtrl : MonoBehaviour {
 		Debug.Log (other.gameObject.tag);
 		switch (other.gameObject.tag) {
 		case "Coin":
-			
+			if(SFXOn)
 			SFXCtrl.instance.ShowCoinSparkle (other.gameObject.transform.position);
+			break;
+		case "Powerup_Bullet":
+			canFire = true;
+			Vector3 powerupPos = other.gameObject.transform.position;
+			Destroy (other.gameObject);
+			if(SFXOn)
+				SFXCtrl.instance.ShowBulletSparkle (powerupPos);
+			
 			break;
 		default:
 			break;
