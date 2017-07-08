@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4168873547248894}
   - component: {fileID: 212002538003865502}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Create_Breakable
   m_TagString: Ground
   m_Icon: {fileID: 0}

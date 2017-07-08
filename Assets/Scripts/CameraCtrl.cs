@@ -21,11 +21,15 @@ public class CameraCtrl : MonoBehaviour {
 	void Update () {
 		if (player.position.y < 0) {
 			yAxis = 0.0f;
+		}else if(player.position.y > 4){
+			yAxis = 4.0f;
 		} else {
 			yAxis = player.position.y;
 		}
 		if (player.position.x < 0) {
 			xAxis = 0.0f;
+		}else if (player.position.x > 115 ){
+			xAxis = 115.0f;
 		} else {
 			xAxis = player.position.x;
 		}

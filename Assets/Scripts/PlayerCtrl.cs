@@ -162,7 +162,7 @@ public class PlayerCtrl : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D(Collider2D other){
-		Debug.Log (other.gameObject.tag);
+		Debug.Log ("HELLO "+other.gameObject.tag);
 		switch (other.gameObject.tag) {
 		case "Coin":
 			if(SFXOn)
@@ -175,6 +175,10 @@ public class PlayerCtrl : MonoBehaviour {
 			if(SFXOn)
 				SFXCtrl.instance.ShowBulletSparkle (powerupPos);
 			
+			break;
+		case "Water":
+			if(SFXOn)
+				SFXCtrl.instance.ShowSplash (other.gameObject.transform.position);
 			break;
 		default:
 			break;

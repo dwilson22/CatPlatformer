@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4525741021411064}
   - component: {fileID: 212054551644262702}
   - component: {fileID: 58617782317601190}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: hud_keyYellow
   m_TagString: Untagged
   m_Icon: {fileID: 0}

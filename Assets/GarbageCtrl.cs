@@ -6,8 +6,8 @@ public class GarbageCtrl : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D other){
 		if (other.gameObject.CompareTag ("Player")) {
-			GAMECtrl.instance.PLayerDied (other.gameObject);
-		} else {
+			GAMECtrl.instance.PlayerDied (other.gameObject);
+		} else if(!other.gameObject.CompareTag ("Ground") && !other.gameObject.CompareTag ("Water") ) {
 			Destroy (other.gameObject);
 		}
 	}

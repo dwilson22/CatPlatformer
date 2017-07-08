@@ -24,9 +24,13 @@ public class GAMECtrl : MonoBehaviour {
 	/// <summary>
 	/// Restarts the level when player dies.
 	/// </summary>
-	public void PLayerDied(GameObject player){
+	public void PlayerDied(GameObject player){
 		
 		player.SetActive (false);
+		Invoke ("RestartLevel", restartDelay);
+	}
+
+	public void PLayerDrowned(GameObject player){
 		Invoke ("RestartLevel", restartDelay);
 	}
 

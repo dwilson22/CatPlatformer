@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4386419813808228}
   - component: {fileID: 212438147381150208}
   - component: {fileID: 58555192399928506}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: bullet_key
   m_TagString: Powerup_Bullet
   m_Icon: {fileID: 0}

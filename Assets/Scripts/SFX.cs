@@ -13,6 +13,7 @@ public class SFX  {
 	public GameObject sfx_playerlands;
 	public GameObject sfx_box_fragment_1;
 	public GameObject sfx_box_fragment_2;
+	public GameObject sfx_splash;
 
 		
 
