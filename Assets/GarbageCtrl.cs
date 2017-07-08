@@ -5,6 +5,10 @@ using UnityEngine;
 public class GarbageCtrl : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D other){
-		Destroy (other.gameObject);
+		if (other.gameObject.CompareTag ("Player")) {
+			GAMECtrl.instance.PLayerDied (other.gameObject);
+		} else {
+			Destroy (other.gameObject);
+		}
 	}
 }
