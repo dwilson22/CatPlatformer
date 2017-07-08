@@ -8,6 +8,8 @@ TagManager:
   - Feet
   - Coin
   - Powerup_Bullet
+  - Breakable
+  - Head
   layers:
   - Default
   - TransparentFX
@@ -21,7 +23,7 @@ TagManager:
   - Enemies
   - Ground
   - Players
-  - 
+  - Fragment
   - 
   - 
   - 
