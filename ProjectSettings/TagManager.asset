@@ -12,6 +12,7 @@ TagManager:
   - Head
   - Water
   - Test
+  - Platform
   layers:
   - Default
   - TransparentFX
