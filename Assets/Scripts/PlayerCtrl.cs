@@ -9,7 +9,7 @@ public class PlayerCtrl : MonoBehaviour {
 	[Tooltip("This is an postive int that is used to speed up player movement by the amount multiplied.")]
 	public int speedBoost;
 	public float jumpSpeed;
-	public bool isGrounded, SFXOn, canFire;
+	public bool isGrounded, SFXOn, canFire, isStuck;
 	public Transform feet;
 	public float feetRadius;
 	public float boxWidth;
@@ -25,7 +25,7 @@ public class PlayerCtrl : MonoBehaviour {
 	Animator anim;
 	bool isJumping;
 	bool canDoubleJump;
-	bool rightPressed, leftPressed;
+	public bool rightPressed, leftPressed;
 	// Use this for initialization
 	void Start () {
 		rb = GetComponent<Rigidbody2D>();
