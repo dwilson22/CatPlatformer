@@ -58644,6 +58644,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   restartDelay: 1
+  data:
+    coinCount: 10
 --- !u!1001 &2063110669
 Prefab:
   m_ObjectHideFlags: 0
