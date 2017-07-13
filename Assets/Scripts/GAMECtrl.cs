@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
@@ -9,6 +10,7 @@ public class GAMECtrl : MonoBehaviour {
 	public static GAMECtrl instance;
 	public float restartDelay;
 	public GameData data;
+	public Text txtCoinCount;
 
 	string dataFilePath;
 	BinaryFormatter bf;
@@ -44,6 +46,7 @@ public class GAMECtrl : MonoBehaviour {
 		if(File.Exists(dataFilePath)){ 
 			FileStream fs = new FileStream (dataFilePath, FileMode.Open);
 			data = (GameData) bf.Deserialize (fs);
+			txtCoinCount.text = "X " + data.coinCount;
 			Debug.Log ("NUM OF COINS" + data.coinCount);
 			fs.Close();
 		}
@@ -64,6 +67,7 @@ public class GAMECtrl : MonoBehaviour {
 	FileStream fs = new FileStream (dataFilePath, FileMode.Create);
 		data.coinCount = 0;
 		bf.Serialize (fs, data);
+		txtCoinCount.text = "X " + data.coinCount;
 		fs.Close ();
 		Debug.Log ("Reset");
 	}
@@ -78,6 +82,11 @@ public class GAMECtrl : MonoBehaviour {
 
 	public void PLayerDrowned(GameObject player){
 		Invoke ("RestartLevel", restartDelay);
+	}
+
+	public void UpdateCointCount(){
+		data.coinCount += 1;
+		txtCoinCount.text = "X " + data.coinCount;
 	}
 
 	public void RestartLevel(){

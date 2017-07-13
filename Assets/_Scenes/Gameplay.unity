@@ -58645,7 +58645,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   restartDelay: 1
   data:
-    coinCount: 10
+    coinCount: 0
+  txtCoinCount: {fileID: 1182884769}
 --- !u!1001 &2063110669
 Prefab:
   m_ObjectHideFlags: 0

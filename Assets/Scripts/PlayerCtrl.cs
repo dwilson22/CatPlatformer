@@ -165,6 +165,7 @@ public class PlayerCtrl : MonoBehaviour {
 		Debug.Log ("HELLO "+other.gameObject.tag);
 		switch (other.gameObject.tag) {
 		case "Coin":
+			GAMECtrl.instance.UpdateCointCount ();
 			if(SFXOn)
 			SFXCtrl.instance.ShowCoinSparkle (other.gameObject.transform.position);
 			break;
