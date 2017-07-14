@@ -167,11 +167,11 @@ public class PlayerCtrl : MonoBehaviour {
 		case "Coin":
 			GAMECtrl.instance.UpdateCointCount ();
 			if(SFXOn)
-			SFXCtrl.instance.ShowCoinSparkle (gameObject.transform.position);
+				SFXCtrl.instance.ShowCoinSparkle (other.gameObject.transform.position);
 			break;
 		case "Powerup_Bullet":
 			canFire = true;
-			garbageCollector.SetActive(false);
+
 			Vector3 powerupPos = other.gameObject.transform.position;
 			Destroy (other.gameObject);
 			if(SFXOn)
@@ -179,8 +179,10 @@ public class PlayerCtrl : MonoBehaviour {
 			
 			break;
 		case "Water":
+			garbageCollector.SetActive (false);
+			GAMECtrl.instance.PlayerDrowned (gameObject);
 			if(SFXOn)
-				SFXCtrl.instance.ShowSplash (other.gameObject.transform.position);
+				SFXCtrl.instance.ShowSplash (gameObject.transform.position);
 			break;
 		default:
 			break;

@@ -101,7 +101,7 @@ public class GAMECtrl : MonoBehaviour {
 		//Invoke ("RestartLevel", restartDelay);
 	}
 
-	public void PLayerDrowned(GameObject player){
+	public void PlayerDrowned(GameObject player){
 		CheckLives ();
 		//Invoke ("RestartLevel", restartDelay);
 	}

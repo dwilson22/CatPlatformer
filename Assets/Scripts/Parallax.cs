@@ -19,12 +19,21 @@ public class Parallax : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (!playerCtrl.isStuck) {
+			float savedOffset = offSetX;
 			offSetX += Input.GetAxisRaw ("Horizontal") * speed;
 
-			if (playerCtrl.leftPressed) {
-				offSetX += -speed;
-			} else if (playerCtrl.rightPressed) {
-				offSetX += speed;
+
+
+			//Debug.Log ("player LOCATION " + player.transform.position.x);
+			if (player.transform.position.x > 0 && player.transform.position.x < 115) {
+				
+				if (playerCtrl.leftPressed) {
+					offSetX += -speed;
+				} else if (playerCtrl.rightPressed) {
+					offSetX += speed;
+				}
+			} else {
+				offSetX = savedOffset;
 			}
 			mat.SetTextureOffset ("_MainTex", new Vector2 (offSetX, 0));
 		}
