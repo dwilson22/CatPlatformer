@@ -17,7 +17,7 @@ public class PlayerCtrl : MonoBehaviour {
 	public LayerMask whatIsGround;
 	public float delayForDoubleJump;
 	public Transform leftBulletSpawnPos, rightBulletSpawnPos;
-	public GameObject leftBullet, rightBullet;
+	public GameObject leftBullet, rightBullet, garbageCollector;
 
 
 	Rigidbody2D rb;
@@ -167,10 +167,11 @@ public class PlayerCtrl : MonoBehaviour {
 		case "Coin":
 			GAMECtrl.instance.UpdateCointCount ();
 			if(SFXOn)
-			SFXCtrl.instance.ShowCoinSparkle (other.gameObject.transform.position);
+			SFXCtrl.instance.ShowCoinSparkle (gameObject.transform.position);
 			break;
 		case "Powerup_Bullet":
 			canFire = true;
+			garbageCollector.SetActive(false);
 			Vector3 powerupPos = other.gameObject.transform.position;
 			Destroy (other.gameObject);
 			if(SFXOn)

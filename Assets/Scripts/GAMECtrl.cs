@@ -29,6 +29,8 @@ public class GAMECtrl : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		timeLeft = maxTime;
+		HandleFirstBoot ();
+		UpdateHearts ();
 	}
 	
 	// Update is called once per frame
@@ -40,6 +42,8 @@ public class GAMECtrl : MonoBehaviour {
 		if (timeLeft >= 0) {
 			UpdateTimer ();
 		}
+
+
 	}
 	public void SaveData(){
 		FileStream fs = new FileStream (dataFilePath, FileMode.Create);
@@ -75,6 +79,9 @@ public class GAMECtrl : MonoBehaviour {
 	FileStream fs = new FileStream (dataFilePath, FileMode.Create);
 		data.coinCount = 0;
 		data.score = 0;
+		timeLeft = maxTime;
+		data.lives = 3;
+		UpdateHearts ();
 		for (int keyNumber = 0; keyNumber <= 2; keyNumber++) {
 			data.keyFound [keyNumber] = false;
 		}
@@ -90,11 +97,13 @@ public class GAMECtrl : MonoBehaviour {
 	public void PlayerDied(GameObject player){
 		
 		player.SetActive (false);
-		Invoke ("RestartLevel", restartDelay);
+		CheckLives ();
+		//Invoke ("RestartLevel", restartDelay);
 	}
 
 	public void PLayerDrowned(GameObject player){
-		Invoke ("RestartLevel", restartDelay);
+		CheckLives ();
+		//Invoke ("RestartLevel", restartDelay);
 	}
 
 	public void UpdateCointCount(){
@@ -133,5 +142,52 @@ public class GAMECtrl : MonoBehaviour {
 			PlayerDied (player);
 		}
 	}
-		
+	void HandleFirstBoot(){
+		if (data.isFirstBoot) {
+			data.lives = 3;
+			data.coinCount = 0;
+			data.score = 0;
+			data.keyFound [0] = false;
+			data.keyFound [1] = false;
+			data.keyFound [2] = false;
+			data.isFirstBoot = false;
+			UI.txtCoinCount.text = "X " + data.coinCount;
+			UI.txtScore.text = "Score: " + data.score;
+		}
+	}
+
+	void UpdateHearts(){
+		if (data.lives == 3) {
+			UI.heart0.sprite = UI.heartFull;
+			UI.heart1.sprite = UI.heartFull;
+			UI.heart2.sprite = UI.heartFull;
+		}
+		if (data.lives == 2)
+			UI.heart0.sprite = UI.heartEmpty;
+		else if (data.lives == 1) {
+			UI.heart1.sprite = UI.heartEmpty;
+			UI.heart0.sprite = UI.heartEmpty;
+		} else if (data.lives == 0) {
+			UI.heart2.sprite = UI.heartEmpty;
+		}
+	}
+
+	void CheckLives(){
+		int updatedLives = data.lives;
+		updatedLives -= 1;
+		data.lives = updatedLives;
+
+		if (data.lives == 0) {
+			Invoke ("GameOver", restartDelay);
+		} else {
+			SaveData ();
+			Invoke ("RestartLevel", restartDelay);
+		}
+	}
+
+	void GameOver(){
+		UI.panelGameOver.SetActive (true);
+		data.isFirstBoot = true;
+		SaveData ();
+	}
 }
