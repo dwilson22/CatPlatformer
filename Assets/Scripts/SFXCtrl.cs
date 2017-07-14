@@ -32,6 +32,18 @@ public class SFXCtrl : MonoBehaviour {
 	public void ShowSplash(Vector3 pos){
 		Instantiate (sfx.sfx_splash, pos, Quaternion.identity);
 	}
+	public void ShowKeySparkle(int keyNumber){
+		Vector3 pos = Vector3.zero;
+		if (keyNumber == 0)
+			pos = sfx.key0.position;
+		else if(keyNumber == 1)
+			pos = sfx.key1.position;
+		else if(keyNumber == 2)
+			pos = sfx.key2.position;
+
+		//pos.x -= 1;
+		Instantiate (sfx.sfx_bullet_pickup,pos,Quaternion.identity);
+	}
 
 	public void HandleBoxBreaking(Vector3 pos){
 		Vector3 pos1 = pos;

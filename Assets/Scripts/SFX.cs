@@ -7,7 +7,7 @@ using System;
 /// </summary>
 [Serializable]
 public class SFX  {
-
+	[Header("GameObjects")]
 	public GameObject sfx_coin_pickup;
 	public GameObject sfx_bullet_pickup;
 	public GameObject sfx_playerlands;
@@ -15,6 +15,10 @@ public class SFX  {
 	public GameObject sfx_box_fragment_2;
 	public GameObject sfx_splash;
 
+	[Header("Transforms")]
+	public Transform key0;
+	public Transform key1;
+	public Transform key2;
 		
 
 }

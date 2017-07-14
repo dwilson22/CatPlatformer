@@ -10,9 +10,8 @@ public class GAMECtrl : MonoBehaviour {
 	public static GAMECtrl instance;
 	public float restartDelay;
 	public GameData data;
-	public Text txtCoinCount;
-	public Text txtScore;
 	public int coinValue;
+	public UI UI;
 
 	string dataFilePath;
 	BinaryFormatter bf;
@@ -48,8 +47,8 @@ public class GAMECtrl : MonoBehaviour {
 		if(File.Exists(dataFilePath)){ 
 			FileStream fs = new FileStream (dataFilePath, FileMode.Open);
 			data = (GameData) bf.Deserialize (fs);
-			txtCoinCount.text = "X " + data.coinCount;
-			txtScore.text = "Score: " + data.score;
+			UI.txtCoinCount.text = "X " + data.coinCount;
+			UI.txtScore.text = "Score: " + data.score;
 			Debug.Log ("NUM OF COINS" + data.coinCount);
 			fs.Close();
 		}
@@ -70,9 +69,12 @@ public class GAMECtrl : MonoBehaviour {
 	FileStream fs = new FileStream (dataFilePath, FileMode.Create);
 		data.coinCount = 0;
 		data.score = 0;
+		for (int keyNumber = 0; keyNumber <= 2; keyNumber++) {
+			data.keyFound [keyNumber] = false;
+		}
 		bf.Serialize (fs, data);
-		txtCoinCount.text = "X " + data.coinCount;
-		txtScore.text = "Score: " + data.score;
+		UI.txtCoinCount.text = "X " + data.coinCount;
+		UI.txtScore.text = "Score: " + data.score;
 		fs.Close ();
 		Debug.Log ("Reset");
 	}
@@ -91,13 +93,23 @@ public class GAMECtrl : MonoBehaviour {
 
 	public void UpdateCointCount(){
 		data.coinCount += 1;
-		txtCoinCount.text = "X " + data.coinCount;
+		UI.txtCoinCount.text = "X " + data.coinCount;
 		UpdateScore (coinValue);
 	}
 
 	public void UpdateScore(int val){
 		data.score += val;
-		txtScore.text = "Score: " + data.score;
+		UI.txtScore.text = "Score: " + data.score;
+	}
+
+	public void UpdateKeyCount(int keyNumber){
+		data.keyFound [keyNumber] = true;
+		if (keyNumber == 0)
+			UI.key0.sprite = UI.keyFull0;
+		else if(keyNumber == 1)
+			UI.key1.sprite = UI.keyFull1;
+		else if(keyNumber == 2)
+			UI.key2.sprite = UI.keyFull2;
 	}
 
 	public void RestartLevel(){
