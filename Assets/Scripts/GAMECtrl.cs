@@ -8,10 +8,12 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 public class GAMECtrl : MonoBehaviour {
 	public static GAMECtrl instance;
-	public float restartDelay;
+	public float restartDelay, maxTime, timeLeft;
 	public GameData data;
 	public int coinValue;
 	public UI UI;
+
+
 
 	string dataFilePath;
 	BinaryFormatter bf;
@@ -26,13 +28,17 @@ public class GAMECtrl : MonoBehaviour {
 	}
 	// Use this for initialization
 	void Start () {
-		
+		timeLeft = maxTime;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		if(Input.GetKeyDown(KeyCode.Escape)){
 			ResetData ();
+		}
+
+		if (timeLeft >= 0) {
+			UpdateTimer ();
 		}
 	}
 	public void SaveData(){
@@ -103,6 +109,7 @@ public class GAMECtrl : MonoBehaviour {
 	}
 
 	public void UpdateKeyCount(int keyNumber){
+		
 		data.keyFound [keyNumber] = true;
 		if (keyNumber == 0)
 			UI.key0.sprite = UI.keyFull0;
@@ -114,6 +121,17 @@ public class GAMECtrl : MonoBehaviour {
 
 	public void RestartLevel(){
 		SceneManager.LoadScene ("Gameplay");
+	}
+
+	void UpdateTimer(){
+		timeLeft -= Time.deltaTime;
+		UI.txtTimer.text = "Timer: " + (int)timeLeft;
+
+		if (timeLeft <= 0) {
+			UI.txtTimer.text = "Timer: 0";
+			GameObject player = GameObject.Find ("Cat");
+			PlayerDied (player);
+		}
 	}
 		
 }

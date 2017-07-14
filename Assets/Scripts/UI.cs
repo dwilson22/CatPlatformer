@@ -9,6 +9,7 @@ public class UI {
 	[Header("Texts")]
 	public Text txtCoinCount;
 	public Text txtScore;
+	public Text txtTimer;
 	[Header("Images")]
 	public Image key0;
 	public Image key1;
