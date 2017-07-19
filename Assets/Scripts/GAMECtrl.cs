@@ -100,7 +100,29 @@ public class GAMECtrl : MonoBehaviour {
 		CheckLives ();
 		//Invoke ("RestartLevel", restartDelay);
 	}
+	public void PlayerDiedAnimation(GameObject player){
+		Rigidbody2D rb = player.GetComponent<Rigidbody2D> ();
+		rb.AddForce (new Vector2 (-150f, 400f));
 
+		player.transform.Rotate (new Vector3 (0, 0, 45f));
+		player.GetComponent<PlayerCtrl> ().enabled = false;
+		foreach (Collider2D c2d in player.transform.GetComponents<Collider2D>()) {
+			c2d.enabled = false;
+		}
+
+		foreach (Transform child in player.transform) {
+			child.gameObject.SetActive (false);
+		}
+
+		Camera.main.GetComponent<CameraCtrl> ().enabled = false;
+		rb.velocity = Vector2.zero;
+		StartCoroutine ("PauseBeforeReload",player);
+
+	}
+	IEnumerator PauseBeforeReload(GameObject player){
+		yield return new WaitForSeconds (1.5f);
+		PlayerDied (player);
+	}
 	public void PlayerDrowned(GameObject player){
 		CheckLives ();
 		//Invoke ("RestartLevel", restartDelay);

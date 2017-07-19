@@ -159,6 +159,9 @@ public class PlayerCtrl : MonoBehaviour {
 		if (other.gameObject.CompareTag ("Ground") || other.gameObject.CompareTag ("Platform")) {
 			isJumping = false;
 		}
+		if (other.gameObject.CompareTag ("Enemy")) {
+			GAMECtrl.instance.PlayerDiedAnimation (gameObject);
+		}
 	}
 
 	void OnTriggerEnter2D(Collider2D other){
