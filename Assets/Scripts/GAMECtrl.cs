@@ -185,6 +185,12 @@ public class GAMECtrl : MonoBehaviour {
 		SceneManager.LoadScene ("Gameplay");
 	}
 
+	public void PlayerStompEnemy(GameObject enemy){
+		enemy.tag = "Untagged";
+		Destroy (enemy);
+		UpdateScore (Item.Enemy);
+	}
+
 	void UpdateTimer(){
 		timeLeft -= Time.deltaTime;
 		UI.txtTimer.text = "Timer: " + (int)timeLeft;
@@ -243,4 +249,6 @@ public class GAMECtrl : MonoBehaviour {
 		data.isFirstBoot = true;
 		SaveData ();
 	}
+
+
 }

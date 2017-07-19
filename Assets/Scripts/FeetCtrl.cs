@@ -7,7 +7,6 @@ public class FeetCtrl : MonoBehaviour {
 	public GameObject player;
 	void OnTriggerEnter2D(Collider2D other){
 
-		Debug.Log (other.gameObject.tag);
 		if(other.gameObject.CompareTag("Ground")){
 			SFXCtrl.instance.ShowPlayerLanding (dustParticlePosition.position);
 		}
