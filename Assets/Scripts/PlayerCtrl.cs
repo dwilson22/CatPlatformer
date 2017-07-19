@@ -162,6 +162,12 @@ public class PlayerCtrl : MonoBehaviour {
 		if (other.gameObject.CompareTag ("Enemy")) {
 			GAMECtrl.instance.PlayerDiedAnimation (gameObject);
 		}
+		if (other.gameObject.CompareTag ("BigCoin")) {
+			GAMECtrl.instance.UpdateCointCount ();
+			SFXCtrl.instance.ShowBulletSparkle (other.gameObject.transform.position);
+			Destroy (other.gameObject);
+			GAMECtrl.instance.UpdateScore (GAMECtrl.Item.BigCoin);
+		}
 	}
 
 	void OnTriggerEnter2D(Collider2D other){
@@ -169,6 +175,8 @@ public class PlayerCtrl : MonoBehaviour {
 		switch (other.gameObject.tag) {
 		case "Coin":
 			GAMECtrl.instance.UpdateCointCount ();
+			GAMECtrl.instance.UpdateScore (GAMECtrl.Item.Coin);
+
 			if(SFXOn)
 				SFXCtrl.instance.ShowCoinSparkle (other.gameObject.transform.position);
 			break;

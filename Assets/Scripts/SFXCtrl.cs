@@ -32,6 +32,9 @@ public class SFXCtrl : MonoBehaviour {
 	public void ShowSplash(Vector3 pos){
 		Instantiate (sfx.sfx_splash, pos, Quaternion.identity);
 	}
+	public void EnemyExplosion(Vector3 pos){
+		Instantiate (sfx.sfx_enemy_explosion, pos, Quaternion.identity);
+	}
 	public void ShowKeySparkle(int keyNumber){
 		Vector3 pos = Vector3.zero;
 		if (keyNumber == 0)

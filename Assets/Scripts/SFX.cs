@@ -14,6 +14,7 @@ public class SFX  {
 	public GameObject sfx_box_fragment_1;
 	public GameObject sfx_box_fragment_2;
 	public GameObject sfx_splash;
+	public GameObject sfx_enemy_explosion;
 
 	[Header("Transforms")]
 	public Transform key0;

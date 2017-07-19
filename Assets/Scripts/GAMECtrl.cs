@@ -10,8 +10,16 @@ public class GAMECtrl : MonoBehaviour {
 	public static GAMECtrl instance;
 	public float restartDelay, maxTime, timeLeft;
 	public GameData data;
-	public int coinValue;
+	public int coinValue, enemyValue, bigCoinValue;
 	public UI UI;
+	public GameObject bigCoin;
+
+	public enum Item
+	{
+		Coin,
+		BigCoin,
+		Enemy
+	}
 
 
 
@@ -131,12 +139,35 @@ public class GAMECtrl : MonoBehaviour {
 	public void UpdateCointCount(){
 		data.coinCount += 1;
 		UI.txtCoinCount.text = "X " + data.coinCount;
-		UpdateScore (coinValue);
 	}
 
-	public void UpdateScore(int val){
-		data.score += val;
+	public void UpdateScore(Item item){
+		int itemValue = 0;
+		switch (item) {
+		case Item.BigCoin:
+			itemValue = bigCoinValue;
+			break;
+		case Item.Coin:
+			itemValue = coinValue;
+			break;
+		case Item.Enemy:
+			itemValue = enemyValue;
+			break;
+		default:
+			break;
+		}
+		data.score += itemValue;
 		UI.txtScore.text = "Score: " + data.score;
+	}
+
+	public void BulletHitEnemy(Transform enemy){
+		Vector3 pos = enemy.position;
+		pos.z = 20f;
+		SFXCtrl.instance.EnemyExplosion (pos);
+		Instantiate (bigCoin, pos, Quaternion.identity);
+		Destroy (enemy.gameObject);
+
+
 	}
 
 	public void UpdateKeyCount(int keyNumber){

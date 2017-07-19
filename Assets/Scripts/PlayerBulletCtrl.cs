@@ -14,4 +14,14 @@ public class PlayerBulletCtrl : MonoBehaviour {
 	void Update () {
 		rb.velocity = velocity;
 	}
+
+	void OnCollisionEnter2D(Collision2D other){
+		if (other.gameObject.CompareTag ("Enemy")) {
+			GAMECtrl.instance.BulletHitEnemy (other.gameObject.transform);
+			GAMECtrl.instance.UpdateScore (GAMECtrl.Item.Enemy);
+			Destroy (gameObject);
+		} else if (!other.gameObject.CompareTag ("Player")) {
+			Destroy (gameObject);
+		}
+	}
 }
