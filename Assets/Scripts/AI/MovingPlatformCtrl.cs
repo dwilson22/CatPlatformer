@@ -8,7 +8,7 @@ public class MovingPlatformCtrl : MonoBehaviour {
 	Vector3 nextPos;
 	// Use this for initialization
 	void Start () {
-		startPos = pos1;
+	//	startPos = pos1;
 		nextPos = startPos.position;
 	}
 	

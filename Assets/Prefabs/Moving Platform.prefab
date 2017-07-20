@@ -52,7 +52,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4939120767330608}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Pos_2
   m_TagString: Untagged
   m_Icon: {fileID: 571167235653111936, guid: 0000000000000000d000000000000000, type: 0}
@@ -83,9 +83,9 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4873223792700716}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Moving Platform
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -114,7 +114,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4926884111287966}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Pos_1
   m_TagString: Untagged
   m_Icon: {fileID: 571167235653111936, guid: 0000000000000000d000000000000000, type: 0}
@@ -213,7 +213,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1432212110735864}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 73.3, y: 4, z: 0}
+  m_LocalPosition: {x: 86.11771, y: -1.4535894, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4519687359485550}
@@ -275,7 +275,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pos1: {fileID: 4926884111287966}
   pos2: {fileID: 4939120767330608}
-  startPos: {fileID: 0}
+  startPos: {fileID: 4926884111287966}
   speed: 2
 --- !u!212 &212317641652154868
 SpriteRenderer:
