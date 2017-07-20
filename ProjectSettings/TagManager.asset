@@ -18,6 +18,7 @@ TagManager:
   - BigCoin
   - EnemyHead
   - BeeActivator
+  - FishJumper
   layers:
   - Default
   - TransparentFX
