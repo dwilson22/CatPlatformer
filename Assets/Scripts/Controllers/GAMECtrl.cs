@@ -110,6 +110,7 @@ public class GAMECtrl : MonoBehaviour {
 	}
 	public void PlayerDiedAnimation(GameObject player){
 		Rigidbody2D rb = player.GetComponent<Rigidbody2D> ();
+		SpriteRenderer sr = player.GetComponent<SpriteRenderer> ();
 		rb.AddForce (new Vector2 (-150f, 400f));
 
 		player.transform.Rotate (new Vector3 (0, 0, 45f));
@@ -121,7 +122,8 @@ public class GAMECtrl : MonoBehaviour {
 		foreach (Transform child in player.transform) {
 			child.gameObject.SetActive (false);
 		}
-
+		sr.sortingOrder = 10;
+		AudioCtrl.instance.PLayerDied (player.gameObject.transform.position);
 		Camera.main.GetComponent<CameraCtrl> ().enabled = false;
 		rb.velocity = Vector2.zero;
 		StartCoroutine ("PauseBeforeReload",player);

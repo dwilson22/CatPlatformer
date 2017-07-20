@@ -19,6 +19,7 @@ public class PlayerBulletCtrl : MonoBehaviour {
 		if (other.gameObject.CompareTag ("Enemy")) {
 			GAMECtrl.instance.BulletHitEnemy (other.gameObject.transform);
 			GAMECtrl.instance.UpdateScore (GAMECtrl.Item.Enemy);
+			AudioCtrl.instance.EnemyExplosion (other.transform.position);
 			Destroy (gameObject);
 		} else if (!other.gameObject.CompareTag ("Player")) {
 			Destroy (gameObject);
@@ -29,8 +30,7 @@ public class PlayerBulletCtrl : MonoBehaviour {
 		if (other.gameObject.CompareTag ("Enemy")) {
 			GAMECtrl.instance.BulletHitEnemy (other.gameObject.transform);
 			GAMECtrl.instance.UpdateScore (GAMECtrl.Item.Enemy);
-			Destroy (gameObject);
-		} else if (!other.gameObject.CompareTag ("Player") && !other.gameObject.CompareTag("BeeActivator")) {
+			AudioCtrl.instance.EnemyExplosion (other.transform.position);
 			Destroy (gameObject);
 		}
 	}

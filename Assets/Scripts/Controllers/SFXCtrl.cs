@@ -31,6 +31,7 @@ public class SFXCtrl : MonoBehaviour {
 	}
 	public void ShowSplash(Vector3 pos){
 		Instantiate (sfx.sfx_splash, pos, Quaternion.identity);
+		AudioCtrl.instance.Splash (pos);
 	}
 	public void EnemyExplosion(Vector3 pos){
 		Instantiate (sfx.sfx_enemy_explosion, pos, Quaternion.identity);
@@ -64,6 +65,6 @@ public class SFXCtrl : MonoBehaviour {
 		Instantiate (sfx.sfx_box_fragment_2, pos2, Quaternion.identity);
 		Instantiate (sfx.sfx_box_fragment_2, pos3, Quaternion.identity);
 		Instantiate (sfx.sfx_box_fragment_1, pos4, Quaternion.identity);
-
+		AudioCtrl.instance.BreakCrate (pos);
 	}
 }

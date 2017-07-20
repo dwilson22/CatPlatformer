@@ -107,7 +107,7 @@ public class PlayerCtrl : MonoBehaviour {
 			isJumping = true;
 			rb.AddForce (new Vector2 (0,jumpSpeed));
 			anim.SetInteger ("State", 2);
-
+			AudioCtrl.instance.PlayerJump (gameObject.transform.position);
 			Invoke ("CanDoubleJump", delayForDoubleJump);
 		}
 
@@ -116,6 +116,7 @@ public class PlayerCtrl : MonoBehaviour {
 			rb.velocity = Vector2.zero;
 			rb.AddForce (new Vector2 (0,jumpSpeed));
 			anim.SetInteger ("State", 2);
+			AudioCtrl.instance.PlayerJump (gameObject.transform.position);
 			canDoubleJump = false;
 		}
 	}
@@ -128,6 +129,7 @@ public class PlayerCtrl : MonoBehaviour {
 				Instantiate (rightBullet, rightBulletSpawnPos.position, Quaternion.identity);
 
 			}
+			AudioCtrl.instance.FireBullet (gameObject.transform.position);
 		}
 	}
 
@@ -165,6 +167,7 @@ public class PlayerCtrl : MonoBehaviour {
 		if (other.gameObject.CompareTag ("BigCoin")) {
 			GAMECtrl.instance.UpdateCointCount ();
 			SFXCtrl.instance.ShowBulletSparkle (other.gameObject.transform.position);
+			AudioCtrl.instance.CoinPickup (gameObject.transform.position);
 			Destroy (other.gameObject);
 			GAMECtrl.instance.UpdateScore (GAMECtrl.Item.BigCoin);
 		}
@@ -176,13 +179,14 @@ public class PlayerCtrl : MonoBehaviour {
 		case "Coin":
 			GAMECtrl.instance.UpdateCointCount ();
 			GAMECtrl.instance.UpdateScore (GAMECtrl.Item.Coin);
+			AudioCtrl.instance.CoinPickup (gameObject.transform.position);
 
 			if(SFXOn)
 				SFXCtrl.instance.ShowCoinSparkle (other.gameObject.transform.position);
 			break;
 		case "Powerup_Bullet":
 			canFire = true;
-
+			AudioCtrl.instance.PowerUp (gameObject.transform.position);
 			Vector3 powerupPos = other.gameObject.transform.position;
 			Destroy (other.gameObject);
 			if(SFXOn)

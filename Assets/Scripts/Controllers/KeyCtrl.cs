@@ -9,6 +9,7 @@ public class KeyCtrl : MonoBehaviour {
 		if(other.gameObject.CompareTag("Player")){
 			GAMECtrl.instance.UpdateKeyCount (keyNumber);
 			SFXCtrl.instance.ShowKeySparkle (keyNumber);
+			AudioCtrl.instance.KeyFound (other.transform.position);
 			Destroy (gameObject);
 		}
 	}
