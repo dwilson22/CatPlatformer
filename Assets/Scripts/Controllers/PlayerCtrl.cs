@@ -195,6 +195,9 @@ public class PlayerCtrl : MonoBehaviour {
 			if(SFXOn)
 				SFXCtrl.instance.ShowSplash (gameObject.transform.position);
 			break;
+		case"Enemy":
+			GAMECtrl.instance.PlayerDiedAnimation (gameObject);
+			break;
 		default:
 			break;
 		}

@@ -17,6 +17,7 @@ TagManager:
   - Enemy
   - BigCoin
   - EnemyHead
+  - BeeActivator
   layers:
   - Default
   - TransparentFX

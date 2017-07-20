@@ -24,4 +24,14 @@ public class PlayerBulletCtrl : MonoBehaviour {
 			Destroy (gameObject);
 		}
 	}
+
+	void OnTriggerEnter2D(Collider2D other){
+		if (other.gameObject.CompareTag ("Enemy")) {
+			GAMECtrl.instance.BulletHitEnemy (other.gameObject.transform);
+			GAMECtrl.instance.UpdateScore (GAMECtrl.Item.Enemy);
+			Destroy (gameObject);
+		} else if (!other.gameObject.CompareTag ("Player") && !other.gameObject.CompareTag("BeeActivator")) {
+			Destroy (gameObject);
+		}
+	}
 }
