@@ -12,7 +12,8 @@ public class GAMECtrl : MonoBehaviour {
 	public GameData data;
 	public int coinValue, enemyValue, bigCoinValue;
 	public UI UI;
-	public GameObject bigCoin, bigStar, player;
+	public GameObject bigCoin, bigStar, player, signPlatform;
+	public AudioClip bossBattleMusic;
 
 	public enum Item
 	{
@@ -21,7 +22,7 @@ public class GAMECtrl : MonoBehaviour {
 		Enemy
 	}
 
-
+	bool allKeysFound, timerOn;
 
 	string dataFilePath;
 	BinaryFormatter bf;
@@ -33,12 +34,18 @@ public class GAMECtrl : MonoBehaviour {
 		dataFilePath = Application.persistentDataPath + "/game.dat";
 
 		Debug.Log (dataFilePath);
+		for(int i = 0; i < data.keyFound.Length; i++){
+			data.keyFound [i] = false;
+		}
 	}
 	// Use this for initialization
 	void Start () {
 		timeLeft = maxTime;
 		HandleFirstBoot ();
 		UpdateHearts ();
+		signPlatform.SetActive (false);
+		allKeysFound = false;
+		timerOn = true;
 	}
 	
 	// Update is called once per frame
@@ -47,7 +54,7 @@ public class GAMECtrl : MonoBehaviour {
 			ResetData ();
 		}
 
-		if (timeLeft >= 0) {
+		if (timeLeft >= 0 && timerOn) {
 			UpdateTimer ();
 		}
 
@@ -178,10 +185,12 @@ public class GAMECtrl : MonoBehaviour {
 		SFXCtrl.instance.EnemyExplosion (pos);
 		Instantiate (bigStar, pos, Quaternion.identity);
 		Destroy (enemy.gameObject);
+		timerOn = false;
 	}
 
 	public void UpdateKeyCount(int keyNumber){
-		
+		allKeysFound = true;
+
 		data.keyFound [keyNumber] = true;
 		if (keyNumber == 0)
 			UI.key0.sprite = UI.keyFull0;
@@ -189,6 +198,16 @@ public class GAMECtrl : MonoBehaviour {
 			UI.key1.sprite = UI.keyFull1;
 		else if(keyNumber == 2)
 			UI.key2.sprite = UI.keyFull2;
+
+		foreach(bool found in data.keyFound){
+			if (!found) {
+				allKeysFound = false;
+				break;
+			}
+		}
+		if (allKeysFound) {
+			signPlatform.SetActive (true);
+		}
 	}
 
 	public void RestartLevel(){
@@ -202,6 +221,8 @@ public class GAMECtrl : MonoBehaviour {
 	}
 	public void StopCamera(){
 		Camera.main.GetComponent<CameraCtrl> ().enabled = false;
+		Camera.main.transform.FindChild ("BGMusic").transform.gameObject.GetComponent<AudioSource> ().clip = bossBattleMusic;
+		Camera.main.transform.FindChild ("BGMusic").transform.gameObject.GetComponent<AudioSource> ().Play ();
 		player.GetComponent<PlayerCtrl> ().isStuck = true; // stops parallax
 		//stops from parallax turning on
 		player.transform.FindChild ("leftCheck").gameObject.SetActive (false);
