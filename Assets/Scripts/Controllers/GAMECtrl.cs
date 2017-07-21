@@ -10,16 +10,17 @@ public class GAMECtrl : MonoBehaviour {
 	public static GAMECtrl instance;
 	public float restartDelay, maxTime, timeLeft;
 	public GameData data;
-	public int coinValue, enemyValue, bigCoinValue;
+	public int coinValue, enemyValue, bigCoinValue, bossValue;
 	public UI UI;
-	public GameObject bigCoin, bigStar, player, signPlatform;
+	public GameObject bigCoin, bigStar, player, signPlatform, levelCompleteMenu;
 	public AudioClip bossBattleMusic;
 
 	public enum Item
 	{
 		Coin,
 		BigCoin,
-		Enemy
+		Enemy,
+		Boss
 	}
 
 	bool allKeysFound, timerOn;
@@ -74,19 +75,18 @@ public class GAMECtrl : MonoBehaviour {
 			data = (GameData) bf.Deserialize (fs);
 			UI.txtCoinCount.text = "X " + data.coinCount;
 			UI.txtScore.text = "Score: " + data.score;
-			Debug.Log ("NUM OF COINS" + data.coinCount);
 			fs.Close();
 		}
 	}
 
 	void OnEnable(){
-		Debug.Log ("Loading");
+		//Debug.Log ("Loading");
 		LoadData ();
 
 	}
 
 	void OnDisable(){
-		Debug.Log ("Saving");
+		//Debug.Log ("Saving");
 		SaveData ();
 	}
 
@@ -99,6 +99,12 @@ public class GAMECtrl : MonoBehaviour {
 		UpdateHearts ();
 		for (int keyNumber = 0; keyNumber <= 2; keyNumber++) {
 			data.keyFound [keyNumber] = false;
+		}
+		foreach (LevelData level in data.levelData) {
+			level.numOfStars = 0;
+			if(level.levelNum != 1){
+				level.isUnlocked = false;
+			}
 		}
 		bf.Serialize (fs, data);
 		UI.txtCoinCount.text = "X " + data.coinCount;
@@ -162,6 +168,9 @@ public class GAMECtrl : MonoBehaviour {
 		case Item.Enemy:
 			itemValue = enemyValue;
 			break;
+		case Item.Boss:
+			itemValue = bossValue;
+			break;
 		default:
 			break;
 		}
@@ -185,6 +194,7 @@ public class GAMECtrl : MonoBehaviour {
 		SFXCtrl.instance.EnemyExplosion (pos);
 		Instantiate (bigStar, pos, Quaternion.identity);
 		Destroy (enemy.gameObject);
+		UpdateScore (Item.Boss);
 		timerOn = false;
 	}
 
@@ -229,7 +239,20 @@ public class GAMECtrl : MonoBehaviour {
 		player.transform.FindChild ("rightCheck").gameObject.SetActive (false);
 	}
 
+	public int getScore(){
+		return data.score;
+	}
+	public void SetStarsAwarded(int level, int numOfStarsAwarded){
+		Debug.Log ("LEVEL " + level + "-" + numOfStarsAwarded);
+		data.levelData [level].numOfStars = numOfStarsAwarded;
+	}
+	public void UnlockNextLevel(int level){
+		data.levelData [level].isUnlocked = true;
+	}
 
+	public void LevelComplete(){
+		levelCompleteMenu.SetActive (true);
+	}
 	void UpdateTimer(){
 		timeLeft -= Time.deltaTime;
 		UI.txtTimer.text = "Timer: " + (int)timeLeft;

@@ -6,7 +6,6 @@ public class EnemyHeadCtrl : MonoBehaviour {
 	public GameObject enemy;
 
 	void OnTriggerEnter2D(Collider2D other){
-		Debug.Log (other.tag);
 		if(other.gameObject.CompareTag("Feet")){
 			GAMECtrl.instance.PlayerStompEnemy (enemy);
 			SFXCtrl.instance.EnemyExplosion (enemy.transform.position);

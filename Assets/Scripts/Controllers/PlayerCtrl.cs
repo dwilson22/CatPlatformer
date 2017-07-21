@@ -174,7 +174,6 @@ public class PlayerCtrl : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D(Collider2D other){
-		Debug.Log ("HELLO "+other.gameObject.tag);
 		switch (other.gameObject.tag) {
 		case "Coin":
 			GAMECtrl.instance.UpdateCointCount ();
