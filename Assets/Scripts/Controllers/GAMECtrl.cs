@@ -12,7 +12,7 @@ public class GAMECtrl : MonoBehaviour {
 	public GameData data;
 	public int coinValue, enemyValue, bigCoinValue;
 	public UI UI;
-	public GameObject bigCoin;
+	public GameObject bigCoin, bigStar, player;
 
 	public enum Item
 	{
@@ -172,6 +172,14 @@ public class GAMECtrl : MonoBehaviour {
 
 	}
 
+	public void BossIsKilled(Transform enemy){
+		Vector3 pos = enemy.position;
+		pos.z = 20f;
+		SFXCtrl.instance.EnemyExplosion (pos);
+		Instantiate (bigStar, pos, Quaternion.identity);
+		Destroy (enemy.gameObject);
+	}
+
 	public void UpdateKeyCount(int keyNumber){
 		
 		data.keyFound [keyNumber] = true;
@@ -192,6 +200,14 @@ public class GAMECtrl : MonoBehaviour {
 		Destroy (enemy);
 		UpdateScore (Item.Enemy);
 	}
+	public void StopCamera(){
+		Camera.main.GetComponent<CameraCtrl> ().enabled = false;
+		player.GetComponent<PlayerCtrl> ().isStuck = true; // stops parallax
+		//stops from parallax turning on
+		player.transform.FindChild ("leftCheck").gameObject.SetActive (false);
+		player.transform.FindChild ("rightCheck").gameObject.SetActive (false);
+	}
+
 
 	void UpdateTimer(){
 		timeLeft -= Time.deltaTime;

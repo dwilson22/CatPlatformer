@@ -19,6 +19,8 @@ TagManager:
   - EnemyHead
   - BeeActivator
   - FishJumper
+  - LevelOneBoss
+  - PlayerBullet
   layers:
   - Default
   - TransparentFX
