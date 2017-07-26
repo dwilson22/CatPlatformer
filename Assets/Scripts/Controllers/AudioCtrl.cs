@@ -1,13 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class AudioCtrl : MonoBehaviour {
 	public static AudioCtrl instance;
 	public PlayerAudio playerAudio;
 	public AudioFx audioFx;
 	public Transform player;
-	public GameObject bgMusic;
+	public GameObject bgMusic, btnMusic, btnSound;
+	public Sprite musicON, musicOff, sfxOn, sfxOff;
 
 	[Tooltip("Used to toggle sound on/off")]
 	public bool soundOn, bgMusicOn;
@@ -16,8 +18,19 @@ public class AudioCtrl : MonoBehaviour {
 		if (instance == null) {
 			instance = this;
 		}
-		if (bgMusicOn) {
+		if (DataCtrl.instance.data.playMusic) {
 			bgMusic.SetActive (true);
+			btnMusic.GetComponent<Image> ().sprite = musicON;
+		} else {
+			bgMusic.SetActive (false);
+			btnMusic.GetComponent<Image> ().sprite = musicOff;
+		}
+		if (DataCtrl.instance.data.playSound) {
+			
+			btnSound.GetComponent<Image> ().sprite = sfxOn;
+		} else {
+			
+			btnSound.GetComponent<Image> ().sprite = sfxOff;
 		}
 	}
 	
@@ -70,6 +83,30 @@ public class AudioCtrl : MonoBehaviour {
 	public void PowerUp(Vector3 playerPos){
 		if (soundOn) {
 			AudioSource.PlayClipAtPoint (playerAudio.powerUp, playerPos);
+		}
+	}
+
+	public void ToggleSound(){
+		if (DataCtrl.instance.data.playSound) {
+			soundOn = false;
+			btnSound.GetComponent<Image> ().sprite = sfxOff;
+			DataCtrl.instance.data.playSound = false;
+		} else {
+			soundOn = true;
+			btnSound.GetComponent<Image> ().sprite = sfxOn;
+			DataCtrl.instance.data.playSound = true;
+		}
+	}
+
+	public void ToggleMusic(){
+		if (DataCtrl.instance.data.playMusic) {
+			bgMusic.SetActive (false);
+			btnMusic.GetComponent<Image> ().sprite = musicOff;
+			DataCtrl.instance.data.playMusic = false;
+		} else {
+			bgMusic.SetActive (true);
+			btnMusic.GetComponent<Image> ().sprite = musicON;
+			DataCtrl.instance.data.playMusic = true;
 		}
 	}
 }

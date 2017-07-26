@@ -6609,6 +6609,11 @@ Prefab:
       propertyPath: m_Name
       value: JumpingFish (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 114262830112527440, guid: f67239ff487fd0c449457c734efc558d,
+        type: 2}
+      propertyPath: jumpSpeed
+      value: 550
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f67239ff487fd0c449457c734efc558d, type: 2}
   m_IsPrefabParent: 0
@@ -17987,6 +17992,12 @@ MonoBehaviour:
     playerDied: {fileID: 8300000, guid: 38c9d812f3d774f5699f294d0f83df1b, type: 3}
   player: {fileID: 381638834}
   bgMusic: {fileID: 1449669206}
+  btnMusic: {fileID: 0}
+  btnSound: {fileID: 0}
+  musicON: {fileID: 0}
+  musicOff: {fileID: 0}
+  sfxOn: {fileID: 0}
+  sfxOff: {fileID: 0}
   soundOn: 1
   bgMusicOn: 1
 --- !u!1001 &629257945
@@ -24149,6 +24160,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: 114262830112527440, guid: f67239ff487fd0c449457c734efc558d,
+        type: 2}
+      propertyPath: jumpSpeed
+      value: 550
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f67239ff487fd0c449457c734efc558d, type: 2}
   m_IsPrefabParent: 0
@@ -24939,6 +24955,11 @@ Prefab:
     - target: {fileID: 4860539405495456, guid: f67239ff487fd0c449457c734efc558d, type: 2}
       propertyPath: m_RootOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114262830112527440, guid: f67239ff487fd0c449457c734efc558d,
+        type: 2}
+      propertyPath: jumpSpeed
+      value: 450
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f67239ff487fd0c449457c734efc558d, type: 2}
@@ -46199,9 +46220,24 @@ Prefab:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
       value: World_1
       objectReference: {fileID: 0}
+    - target: {fileID: 114962310849912410, guid: b70614f628153be4c87ff1b4008fe855,
+        type: 2}
+      propertyPath: levelNumber
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b70614f628153be4c87ff1b4008fe855, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1695305895 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1924859934025918, guid: b70614f628153be4c87ff1b4008fe855,
+    type: 2}
+  m_PrefabInternal: {fileID: 1695305894}
+--- !u!1 &1695305896 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1558214846821782, guid: b70614f628153be4c87ff1b4008fe855,
+    type: 2}
+  m_PrefabInternal: {fileID: 1695305894}
 --- !u!4 &1696011961
 Transform:
   m_ObjectHideFlags: 0
@@ -56423,6 +56459,8 @@ MonoBehaviour:
     - levelNum: 1
       isUnlocked: 1
       numOfStars: 0
+    playSound: 0
+    playMusic: 0
   coinValue: 5
   enemyValue: 100
   bigCoinValue: 20
@@ -56448,6 +56486,8 @@ MonoBehaviour:
   player: {fileID: 381638829}
   signPlatform: {fileID: 1777376735}
   levelCompleteMenu: {fileID: 1493951912}
+  pausePanel: {fileID: 1695305895}
+  mobileUI: {fileID: 1695305896}
   bossBattleMusic: {fileID: 8300000, guid: edadb549b399b46a2bdf6e127c3de863, type: 3}
 --- !u!1001 &2063110669
 Prefab:

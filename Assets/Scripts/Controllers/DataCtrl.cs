@@ -38,6 +38,9 @@ public class DataCtrl : MonoBehaviour {
 			data.keyFound = new bool[3];
 			data.levelData = new LevelData[4];
 			data.lives = 3;
+			data.playSound = true;
+			data.playMusic = true;
+			data.isFirstBoot = true;
 			for (int i = 0; i < 4; i++) {
 				LevelData ld = new LevelData ();
 				if (i == 1) {

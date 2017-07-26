@@ -36,10 +36,10 @@ public class LevelCompleteCtrl : MonoBehaviour {
 			Invoke ("ShowGoldenStars", animStartDelay);
 		}
 		if (score >= scoreForNextLevel) {
-			int newLevelNumber = levelNumber+1;
+			int newLevelNumber = levelNumber + 1;
 			btnNext.interactable = true;
 			SFXCtrl.instance.ShowBulletSparkle (btnNext.transform.position);
-			if (levelNumber >= 3) {
+			if (levelNumber >= 2) {
 				 newLevelNumber = levelNumber;
 			}
 			Debug.Log ("LEVEL NUM" + newLevelNumber);
