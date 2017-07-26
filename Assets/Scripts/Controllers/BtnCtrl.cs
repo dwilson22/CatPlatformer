@@ -68,6 +68,7 @@ public class BtnCtrl : MonoBehaviour {
 	}
 
 	void LoadScene(){
+		LoadingCtrl.instance.ShowLoading ();
 		SceneManager.LoadScene (sceneName);
 	}
 }
