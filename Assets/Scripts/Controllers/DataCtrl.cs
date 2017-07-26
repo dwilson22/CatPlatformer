@@ -61,6 +61,12 @@ public class DataCtrl : MonoBehaviour {
 		fs.Close ();
 	}
 
+	public void SaveData(GameData data){
+		FileStream fs = new FileStream (dataFilePath, FileMode.Create);
+		bf.Serialize (fs, data);
+		fs.Close ();
+	}
+
 	void OnEnable(){
 		Debug.Log (dataFilePath);
 		RefreshData ();

@@ -41,12 +41,18 @@ public class GAMECtrl : MonoBehaviour {
 	}
 	// Use this for initialization
 	void Start () {
+		DataCtrl.instance.RefreshData ();
+		data = DataCtrl.instance.data;
+		RefreshUI ();
 		timeLeft = maxTime;
 		HandleFirstBoot ();
 		UpdateHearts ();
 		signPlatform.SetActive (false);
 		allKeysFound = false;
 		timerOn = true;
+	//	data.score = 1000;
+	//	RefreshUI ();
+	//	LevelComplete ();
 	}
 	
 	// Update is called once per frame
@@ -69,25 +75,20 @@ public class GAMECtrl : MonoBehaviour {
 
 
 
-	public void LoadData(){
-		if(File.Exists(dataFilePath)){ 
-			FileStream fs = new FileStream (dataFilePath, FileMode.Open);
-			data = (GameData) bf.Deserialize (fs);
-			UI.txtCoinCount.text = "X " + data.coinCount;
-			UI.txtScore.text = "Score: " + data.score;
-			fs.Close();
-		}
+	public void RefreshUI(){
+		UI.txtCoinCount.text = "X " + data.coinCount;
+		UI.txtScore.text = "Score: " + data.score;
 	}
 
 	void OnEnable(){
 		//Debug.Log ("Loading");
-		LoadData ();
+		RefreshUI ();
 
 	}
 
 	void OnDisable(){
 		//Debug.Log ("Saving");
-		SaveData ();
+		DataCtrl.instance.SaveData(data);
 	}
 
 	void ResetData(){
@@ -221,7 +222,7 @@ public class GAMECtrl : MonoBehaviour {
 	}
 
 	public void RestartLevel(){
-		SceneManager.LoadScene ("Gameplay");
+		SceneManager.LoadScene (SceneManager.GetActiveScene().buildIndex);
 	}
 
 	public void PlayerStompEnemy(GameObject enemy){
@@ -301,7 +302,7 @@ public class GAMECtrl : MonoBehaviour {
 		if (data.lives == 0) {
 			Invoke ("GameOver", restartDelay);
 		} else {
-			SaveData ();
+			DataCtrl.instance.SaveData (data);
 			Invoke ("RestartLevel", restartDelay);
 		}
 	}
