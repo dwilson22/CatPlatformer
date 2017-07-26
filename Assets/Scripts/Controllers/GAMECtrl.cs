@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+using DG.Tweening;
 
 public class GAMECtrl : MonoBehaviour {
 	public static GAMECtrl instance;
@@ -319,20 +320,30 @@ public class GAMECtrl : MonoBehaviour {
 		data.isFirstBoot = true;
 		SaveData ();
 	}
-
+	void SetPause(){
+		isPaused = true;
+	}
+	void UnPause(){
+		isPaused = false;
+	}
 	public void ShowPauseMenu(){
 		if (mobileUI.activeInHierarchy) {
 			mobileUI.SetActive (false);
 		}
-		pausePanel.SetActive (true);
-		isPaused = true;
+		//pausePanel.SetActive (true);
+
+		pausePanel.gameObject.GetComponent<RectTransform> ().DOAnchorPosY (0f, 0.7f, false);
+		Invoke ("SetPause", 1.1f);
 	}
 
 	public void HidePauseMenu(){
-		pausePanel.SetActive (false);
+		//pausePanel.SetActive (false);
 		if (!mobileUI.activeInHierarchy) {
 			mobileUI.SetActive (true);
 		}
-		isPaused = false;
+		UnPause ();
+		pausePanel.gameObject.GetComponent<RectTransform> ().DOAnchorPosY (1440f, 0.7f, false);
+
+
 	}
 }
