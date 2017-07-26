@@ -9,10 +9,11 @@ using System.Runtime.Serialization.Formatters.Binary;
 public class GAMECtrl : MonoBehaviour {
 	public static GAMECtrl instance;
 	public float restartDelay, maxTime, timeLeft;
+	[HideInInspector]
 	public GameData data;
 	public int coinValue, enemyValue, bigCoinValue, bossValue;
 	public UI UI;
-	public GameObject bigCoin, bigStar, player, signPlatform, levelCompleteMenu;
+	public GameObject bigCoin, bigStar, player, signPlatform, levelCompleteMenu, pausePanel, mobileUI;
 	public AudioClip bossBattleMusic;
 
 	public enum Item
@@ -23,7 +24,7 @@ public class GAMECtrl : MonoBehaviour {
 		Boss
 	}
 
-	bool allKeysFound, timerOn;
+	bool allKeysFound, timerOn, isPaused;
 
 	string dataFilePath;
 	BinaryFormatter bf;
@@ -50,6 +51,7 @@ public class GAMECtrl : MonoBehaviour {
 		signPlatform.SetActive (false);
 		allKeysFound = false;
 		timerOn = true;
+		isPaused = false;
 	//	data.score = 1000;
 	//	RefreshUI ();
 	//	LevelComplete ();
@@ -64,7 +66,11 @@ public class GAMECtrl : MonoBehaviour {
 		if (timeLeft >= 0 && timerOn) {
 			UpdateTimer ();
 		}
-
+		if (isPaused) {
+			Time.timeScale = 0;
+		} else {
+			Time.timeScale = 1;
+		}
 
 	}
 	public void SaveData(){
@@ -89,6 +95,7 @@ public class GAMECtrl : MonoBehaviour {
 	void OnDisable(){
 		//Debug.Log ("Saving");
 		DataCtrl.instance.SaveData(data);
+		Time.timeScale = 1;
 	}
 
 	void ResetData(){
@@ -313,5 +320,19 @@ public class GAMECtrl : MonoBehaviour {
 		SaveData ();
 	}
 
+	public void ShowPauseMenu(){
+		if (mobileUI.activeInHierarchy) {
+			mobileUI.SetActive (false);
+		}
+		pausePanel.SetActive (true);
+		isPaused = true;
+	}
 
+	public void HidePauseMenu(){
+		pausePanel.SetActive (false);
+		if (!mobileUI.activeInHierarchy) {
+			mobileUI.SetActive (true);
+		}
+		isPaused = false;
+	}
 }
