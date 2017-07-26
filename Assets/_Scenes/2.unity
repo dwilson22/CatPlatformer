@@ -5587,6 +5587,7 @@ GameObject:
   m_Component:
   - component: {fileID: 184153819}
   - component: {fileID: 184153821}
+  - component: {fileID: 184153820}
   m_Layer: 10
   m_Name: Tile_0_-2_40
   m_TagString: Ground
@@ -5608,6 +5609,20 @@ Transform:
   m_Father: {fileID: 2099594816}
   m_RootOrder: 189
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &184153820
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 184153818}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
 --- !u!212 &184153821
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -17992,12 +18007,12 @@ MonoBehaviour:
     playerDied: {fileID: 8300000, guid: 38c9d812f3d774f5699f294d0f83df1b, type: 3}
   player: {fileID: 381638834}
   bgMusic: {fileID: 1449669206}
-  btnMusic: {fileID: 0}
-  btnSound: {fileID: 0}
-  musicON: {fileID: 0}
-  musicOff: {fileID: 0}
-  sfxOn: {fileID: 0}
-  sfxOff: {fileID: 0}
+  btnMusic: {fileID: 1695305898}
+  btnSound: {fileID: 1695305897}
+  musicON: {fileID: 21300314, guid: e761515ca4506e546a1a6b9d9669be9d, type: 3}
+  musicOff: {fileID: 21300312, guid: e761515ca4506e546a1a6b9d9669be9d, type: 3}
+  sfxOn: {fileID: 21300298, guid: e761515ca4506e546a1a6b9d9669be9d, type: 3}
+  sfxOff: {fileID: 21300296, guid: e761515ca4506e546a1a6b9d9669be9d, type: 3}
   soundOn: 1
   bgMusicOn: 1
 --- !u!1001 &629257945
@@ -25029,7 +25044,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4873223792700716, guid: 621adb1e6a8fec74ab2f7e45ec984f4c, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 35.73423
+      value: 34.35
       objectReference: {fileID: 0}
     - target: {fileID: 4873223792700716, guid: 621adb1e6a8fec74ab2f7e45ec984f4c, type: 2}
       propertyPath: m_LocalPosition.y
@@ -32361,7 +32376,19 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4519687359485550, guid: 621adb1e6a8fec74ab2f7e45ec984f4c, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 2.29
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4926884111287966, guid: 621adb1e6a8fec74ab2f7e45ec984f4c, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0.62
+      objectReference: {fileID: 0}
+    - target: {fileID: 4926884111287966, guid: 621adb1e6a8fec74ab2f7e45ec984f4c, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -3.95
+      objectReference: {fileID: 0}
+    - target: {fileID: 4519687359485550, guid: 621adb1e6a8fec74ab2f7e45ec984f4c, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -2.83
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 621adb1e6a8fec74ab2f7e45ec984f4c, type: 2}
@@ -42652,13 +42679,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: 1802518588303008, guid: d9a840660280e184291dbfe329fc9227, type: 2}
-  gizmoPosition: {x: 70, y: 19}
+  gizmoPosition: {x: 27, y: 0}
   gridOrigin: {x: 0, y: 0, z: 0}
   mapSize: {x: 0, y: 0}
   tileSize: {x: 0, y: 0}
   brushMode: 0
   paintMode: 0
-  colliderMode: 0
+  colliderMode: 1
   groupMode: 0
   copyMode: 0
   isTrigger: 0
@@ -42666,7 +42693,7 @@ MonoBehaviour:
   verticalColliders: 0
   showGrid: 0
   moveWithMouse: 0
-  workingMode: 1
+  workingMode: 0
   prevMode: 0
   isLeftMouseDown: 0
   isRightMouseDown: 0
@@ -45085,21 +45112,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: 1103740033526068, guid: dc3027fed647b5f4fae9a452e892ccd1, type: 2}
-  gizmoPosition: {x: 73, y: 15}
+  gizmoPosition: {x: -24, y: 3}
   gridOrigin: {x: 0, y: 0, z: 0}
   mapSize: {x: 0, y: 0}
   tileSize: {x: 0, y: 0}
   brushMode: 0
-  paintMode: 0
+  paintMode: 1
   colliderMode: 0
   groupMode: 0
   copyMode: 0
   isTrigger: 0
   isEffector: 0
-  verticalColliders: 1
+  verticalColliders: 0
   showGrid: 0
   moveWithMouse: 0
-  workingMode: 1
+  workingMode: 0
   prevMode: 0
   isLeftMouseDown: 0
   isRightMouseDown: 0
@@ -46238,6 +46265,16 @@ GameObject:
   m_PrefabParentObject: {fileID: 1558214846821782, guid: b70614f628153be4c87ff1b4008fe855,
     type: 2}
   m_PrefabInternal: {fileID: 1695305894}
+--- !u!1 &1695305897 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1369666193864124, guid: b70614f628153be4c87ff1b4008fe855,
+    type: 2}
+  m_PrefabInternal: {fileID: 1695305894}
+--- !u!1 &1695305898 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1806313326655066, guid: b70614f628153be4c87ff1b4008fe855,
+    type: 2}
+  m_PrefabInternal: {fileID: 1695305894}
 --- !u!4 &1696011961
 Transform:
   m_ObjectHideFlags: 0
@@ -46664,11 +46701,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4933692964198728, guid: 23cacb98e4577a74581145f00e4a537d, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -6.9
+      value: -5.7
       objectReference: {fileID: 0}
     - target: {fileID: 4933692964198728, guid: 23cacb98e4577a74581145f00e4a537d, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -1.4
+      value: -1.35
       objectReference: {fileID: 0}
     - target: {fileID: 4933692964198728, guid: 23cacb98e4577a74581145f00e4a537d, type: 2}
       propertyPath: m_LocalPosition.z
@@ -57146,6 +57183,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2091527943}
   - component: {fileID: 2091527945}
+  - component: {fileID: 2091527944}
   m_Layer: 10
   m_Name: Tile_0_-2_41
   m_TagString: Ground
@@ -57167,6 +57205,20 @@ Transform:
   m_Father: {fileID: 2099594816}
   m_RootOrder: 190
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &2091527944
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2091527942}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
 --- !u!212 &2091527945
 SpriteRenderer:
   m_ObjectHideFlags: 0
